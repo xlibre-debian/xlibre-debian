@@ -12,4 +12,7 @@ clean:
 distclean: clean
 	./distclean.sh
 
-.PHONY: all clean distclean # build is a real dir
+get:
+	./download.sh
+
+.PHONY: all clean distclean get # build is a real dir
