@@ -14,7 +14,7 @@ for dir in $TO_BUILD; do
 		cd "$dir" || { echo "Failed to enter directory: $dir"; exit 1; }
 
 		# don't sign packages, they will be signed in a repo.
-		gbp buildpackage --git-builder="debuild -i -I -us -uc" || { echo -e "\e[31mFailed to build package\e[0m: $dir"; exit 1; }
+		gbp buildpackage --git-builder="debuild -i -I -us -uc" --git-debian-branch="xlibre/latest" || { echo -e "\e[31mFailed to build package\e[0m: $dir"; exit 1; }
 
 		cd "$ORIGINAL_DIR" || { echo "Failed to return to original directory"; exit 1; }
 
