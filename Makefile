@@ -10,6 +10,6 @@ clean:
 	./clean.sh
 
 distclean: clean
-	rm -r ./build
+	./distclean.sh
 
 .PHONY: all clean distclean # build is a real dir

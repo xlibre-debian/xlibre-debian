@@ -1,0 +1,12 @@
+XLibre Debian
+-------------
+
+Build tools for XLibre Debian
+To build, run `make`
+
+NOTE: Once a successful build is done!!!
+You'll find everything in `./build`
+After that, DO NOT USE `make clean`.
+RUN `make distclean` and then `./download.sh` to redownload everything.
+For some reason `make clean` doesn't do enough cleaning and some source is modified even after cleaning.
+This is a BUG.

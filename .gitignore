@@ -1,1 +1,23 @@
 /build
+# source codes
+/xlibre
+/xlibre-server
+/xorgproto
+/xserver-xlibre-input-elographics
+/xserver-xlibre-input-evdev
+/xserver-xlibre-input-libinput
+/xserver-xlibre-input-synaptics
+/xserver-xlibre-input-elographics
+/xserver-xlibre-input-vmmouse
+/xserver-xlibre-input-void
+/xserver-xlibre-input-wacom
+/xserver-xlibre-video-amdgpu
+/xserver-xlibre-video-ati
+/xserver-xlibre-video-dummy
+/xserver-xlibre-video-fbdev
+/xserver-xlibre-video-intel
+/xserver-xlibre-video-nouveau
+/xserver-xlibre-video-qxl
+/xserver-xlibre-video-sisusb
+/xserver-xlibre-video-vmware
+/xserver-xlibre-video-voodoo
