@@ -2,7 +2,7 @@ SYSTEMD ?= true
 
 all: build
 
-build:
+build: xlibre-server
 	@echo "Compiling with SYSTEMD=${SYSTEMD}"
 	./compile.sh ${SYSTEMD}
 
@@ -11,6 +11,8 @@ clean:
 
 distclean: clean
 	./distclean.sh
+
+xlibre-server: get
 
 get:
 	./download.sh
