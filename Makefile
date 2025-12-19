@@ -1,10 +1,11 @@
 SYSTEMD ?= true
+FAILFAST ?= true
 
 all: build
 
 build: xlibre-server
 	@echo "Compiling with SYSTEMD=${SYSTEMD}"
-	./compile.sh ${SYSTEMD}
+	./compile.sh ${SYSTEMD} ${FAILFAST}
 
 clean:
 	./clean.sh
