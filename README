@@ -10,4 +10,4 @@ After that, DO NOT USE `make clean`.
 RUN `make distclean get` to redownload everything.
 For some reason `make clean` doesn't do enough cleaning and some source is modified even after cleaning.
 This is a BUG.
-Todo: Remove all refrences of apebl, also `input-kbd` and `input-mouse` packages.
+Todo: Remove all refrences of apebl
