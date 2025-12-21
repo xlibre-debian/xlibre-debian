@@ -24,3 +24,12 @@
 /xserver-xlibre-video-voodoo
 /xserver-xlibre-input-keyboard
 /xserver-xlibre-input-mouse
+# binaries
+*.build
+*.buildinfo
+*.changes
+*.deb
+*.xz
+*.gz
+*.dsc
+*.udeb
