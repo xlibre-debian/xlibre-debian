@@ -6,6 +6,6 @@ for dir in $TO_BUILD; do
 		echo -e "\e[31mAlready cloned\e[0m: $dir"
 	else
 		echo -e "\e[0;32mCloning\e[0m: $dir"
-		gbp clone https://github.com/xlibre-debian/$dir --debian-branch="xlibre/latest" || { echo "Failed to clone repository: $dir"; exit 1; }
+		git clone https://github.com/xlibre-debian/$dir || { echo "Failed to enter directory: $dir"; exit 1; }
 	fi
 done
