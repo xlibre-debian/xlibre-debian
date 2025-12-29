@@ -1,0 +1,41 @@
+name: Build XLibre Debian
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: true
+      matrix:
+        osimage: [debian:stable, ubuntu:noble]
+        runsonos: [ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ubuntu-latest
+    container:
+      image: debian:stable
+    
+    steps:
+      - name: Install basic dependencies
+        run: |
+          apt-get update
+          apt-get install -y git git-buildpackage devscripts debhelper build-essential equivs pristine-tar
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure git
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Build
+        run: |
+          make actions
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: debian-packages-${{ matrix.osimage }}-${{ matrix.runsonos }}
+          path: build/
+          if-no-files-found: warn
