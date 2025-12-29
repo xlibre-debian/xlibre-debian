@@ -10,7 +10,7 @@ build: xlibre-server
 clean:
 	./clean.sh
 
-distclean: clean
+distclean:
 	./distclean.sh
 
 xlibre-server: get
