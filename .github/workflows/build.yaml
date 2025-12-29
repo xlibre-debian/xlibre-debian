@@ -10,8 +10,25 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        osimage: [debian:stable, ubuntu:noble]
-        runsonos: [ubuntu-24.04, ubuntu-24.04-arm]
+        include:
+          - osimage: debian:stable
+            osarchname: amd64
+            osdistroname: debian
+            runsonos: ubuntu-24.04
+          - osimage: ubuntu:noble
+            osarchname: amd64
+            osdistroname: ubuntu
+            runsonos: ubuntu-24.04
+          - osimage: debian:stable
+            osarchname: arm64
+            osdistroname: debian
+            runsonos: ubuntu-24.04-arm
+          - osimage: ubuntu:noble
+            osarchname: arm64
+            osdistroname: ubuntu
+            runsonos: ubuntu-24.04-arm
+        # osimage: [debian:stable, ubuntu:noble]
+        # runsonos: [ubuntu-24.04, ubuntu-24.04-arm]
     runs-on: ubuntu-latest
     container:
       image: debian:stable
@@ -36,6 +53,6 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: debian-packages-${{ matrix.osimage }}-${{ matrix.runsonos }}
+          name: ${{ matrix.osdistroname }}-packages-${{ matrix.osarchname }}
           path: build/
           if-no-files-found: warn
