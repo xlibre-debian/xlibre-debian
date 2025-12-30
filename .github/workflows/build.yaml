@@ -50,7 +50,7 @@ jobs:
       - name: Install basic dependencies
         run: |
           apt-get update
-          apt-get install -y git git-buildpackage devscripts debhelper build-essential equivs pristine-tar
+          apt-get install -y git git-buildpackage devscripts debhelper build-essential equivs pristine-tar --no-install-recommends
 
       - name: Checkout repository
         uses: actions/checkout@v4
