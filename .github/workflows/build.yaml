@@ -1,0 +1,75 @@
+name: Build XLibre Debian
+
+on:
+  push:
+    branches: ['master']
+  pull_request:
+    branches: ['master']
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - osimage: debian:stable
+            osarchname: amd64
+            osdistroname: debian
+            runsonos: ubuntu-24.04
+            systemdenabled: true
+          - osimage: ubuntu:noble
+            osarchname: amd64
+            osdistroname: ubuntu
+            runsonos: ubuntu-24.04
+            systemdenabled: true
+          - osimage: debian:stable
+            osarchname: amd64
+            osdistroname: devuan
+            runsonos: ubuntu-24.04
+            systemdenabled: false
+          - osimage: debian:stable
+            osarchname: arm64
+            osdistroname: debian
+            runsonos: ubuntu-24.04-arm
+            systemdenabled: true
+          - osimage: ubuntu:noble
+            osarchname: arm64
+            osdistroname: ubuntu
+            runsonos: ubuntu-24.04-arm
+            systemdenabled: true
+          - osimage: debian:stable
+            osarchname: arm64
+            osdistroname: devuan
+            runsonos: ubuntu-24.04-arm
+            systemdenabled: false
+    runs-on: ${{ matrix.runsonos }}
+    container:
+      image: ${{ matrix.osimage }}
+    name: Build for ${{ matrix.osdistroname }} on ${{ matrix.osarchname }}
+    
+    steps:
+      - name: Install basic dependencies
+        run: |
+          apt-get update
+          apt-get install -y git git-buildpackage devscripts debhelper build-essential equivs pristine-tar --no-install-recommends
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure git
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Build
+        run: |
+          make actions SYSTEMD=$SYSTEMD
+        env:
+          SYSTEMD: ${{ matrix.systemdenabled }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.osdistroname }}-packages-${{ matrix.osarchname }}
+          path: build/
+          if-no-files-found: warn

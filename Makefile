@@ -7,6 +7,10 @@ build: xlibre-server
 	@echo "Compiling with SYSTEMD=${SYSTEMD}"
 	./compile.sh ${SYSTEMD} ${FAILFAST}
 
+actions: xlibre-server
+	@echo "Compiling with SYSTEMD=${SYSTEMD} using CI scripts"
+	./actionscompile.sh ${SYSTEMD} ${FAILFAST}
+
 clean:
 	./clean.sh
 
