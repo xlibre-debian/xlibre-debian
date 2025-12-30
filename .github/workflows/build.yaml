@@ -15,10 +15,17 @@ jobs:
             osarchname: amd64
             osdistroname: debian
             runsonos: ubuntu-24.04
+            systemdenabled: true
           - osimage: ubuntu:noble
             osarchname: amd64
             osdistroname: ubuntu
             runsonos: ubuntu-24.04
+            systemdenabled: true
+          - osimage: debian:stable
+            osarchname: amd64
+            osdistroname: devuan
+            runsonos: ubuntu-24.04
+            systemdenabled: false
           - osimage: debian:stable
             osarchname: arm64
             osdistroname: debian
@@ -27,8 +34,11 @@ jobs:
             osarchname: arm64
             osdistroname: ubuntu
             runsonos: ubuntu-24.04-arm
-        # osimage: [debian:stable, ubuntu:noble]
-        # runsonos: [ubuntu-24.04, ubuntu-24.04-arm]
+          - osimage: debian:stable
+            osarchname: arm64
+            osdistroname: devuan
+            runsonos: ubuntu-24.04-arm
+            systemdenabled: false
     runs-on: ubuntu-latest
     container:
       image: debian:stable
@@ -48,7 +58,9 @@ jobs:
 
       - name: Build
         run: |
-          make actions
+          make actions SYSTEMD=$SYSTEMD
+        env:
+          SYSTEMD: ${{ matrix.systemdenabled }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
