@@ -30,10 +30,12 @@ jobs:
             osarchname: arm64
             osdistroname: debian
             runsonos: ubuntu-24.04-arm
+            systemdenabled: true
           - osimage: ubuntu:noble
             osarchname: arm64
             osdistroname: ubuntu
             runsonos: ubuntu-24.04-arm
+            systemdenabled: true
           - osimage: debian:stable
             osarchname: arm64
             osdistroname: devuan
