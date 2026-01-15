@@ -13,31 +13,45 @@ jobs:
       fail-fast: true
       matrix:
         include:
+          # Debian
           - osimage: debian:stable
             osarchname: amd64
             osdistroname: debian
             runsonos: ubuntu-24.04
             systemdenabled: true
+          - osimage: debian:stable
+            osarchname: arm64
+            osdistroname: debian
+            runsonos: ubuntu-24.04-arm
+            systemdenabled: true
+          ## Debian Testing see: https://github.com/xlibre-debian/xlibre-debian/issues/7
+          - osimage: debian:testing
+            osarchname: amd64
+            osdistroname: debian_testing
+            runsonos: ubuntu-24.04
+            systemdenabled: true
+          - osimage: debian:testing
+            osarchname: arm64
+            osdistroname: debian_testing
+            runsonos: ubuntu-24.04-arm
+            systemdenabled: true
+          # Ubuntu
           - osimage: ubuntu:noble
             osarchname: amd64
             osdistroname: ubuntu
             runsonos: ubuntu-24.04
             systemdenabled: true
+          - osimage: ubuntu:noble
+            osarchname: arm64
+            osdistroname: ubuntu
+            runsonos: ubuntu-24.04-arm
+            systemdenabled: true
+          # Devuan
           - osimage: debian:stable
             osarchname: amd64
             osdistroname: devuan
             runsonos: ubuntu-24.04
             systemdenabled: false
-          - osimage: debian:stable
-            osarchname: arm64
-            osdistroname: debian
-            runsonos: ubuntu-24.04-arm
-            systemdenabled: true
-          - osimage: ubuntu:noble
-            osarchname: arm64
-            osdistroname: ubuntu
-            runsonos: ubuntu-24.04-arm
-            systemdenabled: true
           - osimage: debian:stable
             osarchname: arm64
             osdistroname: devuan
