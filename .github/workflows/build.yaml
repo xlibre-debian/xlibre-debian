@@ -57,6 +57,17 @@ jobs:
             osdistroname: devuan
             runsonos: ubuntu-24.04-arm
             systemdenabled: false
+          ## Devuan Testing see: https://github.com/xlibre-debian/xlibre-debian/issues/7
+          - osimage: debian:testing
+            osarchname: amd64
+            osdistroname: devuan_testing
+            runsonos: ubuntu-24.04
+            systemdenabled: false
+          - osimage: debian:testing
+            osarchname: arm64
+            osdistroname: devuan_testing
+            runsonos: ubuntu-24.04-arm
+            systemdenabled: false
     runs-on: ${{ matrix.runsonos }}
     container:
       image: ${{ matrix.osimage }}
