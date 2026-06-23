@@ -52,5 +52,4 @@ for dir in $TO_BUILD; do
 	fi
 done
 mkdir -p $ORIGINAL_DIR/build
-mv *.build *.buildinfo *.changes *.deb *.xz *.gz *.dsc *.udeb $ORIGINAL_DIR/build || echo "Unable to move files to 'build' directory"
-echo "If you are running on Ubuntu then you will get that error probably. I'm not sure though as I haven't really cared"
+mv *.build *.buildinfo *.changes *.deb *.xz *.gz *.dsc $ORIGINAL_DIR/build || echo "Unable to move files to 'build' directory"

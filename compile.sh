@@ -36,4 +36,4 @@ for dir in $TO_BUILD; do
 	fi
 done
 mkdir -p $ORIGINAL_DIR/build
-mv *.build *.buildinfo *.changes *.deb *.xz *.gz *.dsc *.udeb $ORIGINAL_DIR/build || { echo "Unable to move files to 'build' directory"; exit 1; }
+mv *.build *.buildinfo *.changes *.deb *.xz *.gz *.dsc $ORIGINAL_DIR/build || echo "Unable to move files to 'build' directory"
